@@ -17,25 +17,29 @@ async function main(): Promise<void> {
       "../../../"
     );
 
+    const extensionDir: string = path.resolve(
+      extensionDevelopmentPath,
+      ".vscode-test/extensions"
+    );
+
     // The path to the extension test script
     // Passed to --extensionTestsPath
     const extensionTestsPath: string = path.resolve(
       __dirname,
-      "./fakeSuite/index"
+      "./E2ETests/index"
     );
 
     // The path to the makefile repro (containing the root makefile and .vscode folder)
-    const reproRootPath: string = path.resolve(
-      extensionDevelopmentPath,
-      "./src/test/fakeSuite/Repros/"
-    );
+    const reproRootPath: string = "C:/Users/v-paliu/Desktop/makefile-example";
+
+    
 
     // Download VS Code, unzip it and run the integration test
     let myOpt: testRunner.TestOptions = {
       extensionDevelopmentPath: extensionDevelopmentPath,
       launchArgs: [
         "--disable-workspace-trust",
-        "--disable-extensions",
+        "--extension-dir=" + extensionDir,
         reproRootPath,
       ],
       extensionTestsPath: extensionTestsPath,

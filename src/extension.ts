@@ -309,11 +309,14 @@ export async function activate(
 
   context.subscriptions.push(
     vscode.commands.registerCommand("makefile.buildTarget", async () => {
-      await make.buildTarget(
+      const result = await make.buildTarget(
         make.TriggeredBy.buildTarget,
         configuration.getCurrentTarget() || "",
         false
       );
+      console.log("buildTarget result: " + result);
+      return result;
+
     })
   );
 
